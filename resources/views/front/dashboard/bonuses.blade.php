@@ -52,7 +52,6 @@
                 <table class="table table-striped custom-table">
                     <thead>
                     <tr>
-                        <th scope="col">System</th>
                         <th scope="col">Time</th>
                         <th scope="col">Power</th>
                         <th scope="col">Comment</th>
@@ -61,8 +60,7 @@
                     @foreach($bonuses as $bonus)
                         <tbody>
                         <tr>
-                            <td>{{$bonus->updated_at}}</td>
-                            <td>Random bonus</td>
+                            <td>{{$bonus->created_at}}</td>
                             <td>{{$bonus->bonus}} GH/s</td>
                             <td>Random bonus</td>
                         </tr>

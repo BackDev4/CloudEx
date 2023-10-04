@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'referral_user' => $request->referral_user,
         ]);
 
-        function getReferralLevel($referralId, $level = 1)
+        function getReferralLevel($referralId, $level = 0)
         {
             $referral = Referrals::where('user_id', $referralId)->first();
 

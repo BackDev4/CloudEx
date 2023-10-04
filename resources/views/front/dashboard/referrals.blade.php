@@ -16,8 +16,6 @@
                 <h2 class="title">Referral program</h2>
                 <p class="text">Get rewarded for your referrals</p>
             </div>
-            @if($referrals)
-            @foreach($referrals as $ref)
             <div class="power">
                 <div class="power__list referal__list">
                     <div class="power__item">
@@ -41,8 +39,6 @@
                             <img src="images/userfill.svg" alt="">
                         </div>
                     </div>
-                    @endforeach
-                    @endif
                 </div>
             </div>
             <div class="link-referral">
