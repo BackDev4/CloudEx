@@ -23,7 +23,7 @@ RUN apt-get install -y nodejs
 COPY . /var/www/html
 
 # Установить зависимости Laravel
-RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-autoloader
+RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Установить зависимости npm
 RUN cd /var/www/html && npm install
