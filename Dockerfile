@@ -37,7 +37,7 @@ RUN service mysql start && \
     mysql -uroot -e "GRANT ALL PRIVILEGES ON cloudEx.* TO 'cloudEx'@'localhost' IDENTIFIED BY 'password';"
 
 # Собрать статические файлы в проекте
-RUN cd /var/www/html && npm run prod
+RUN cd /var/www/html && npm run build
 
 # Назначить права доступа к папкам storage и bootstrap в Laravel проекте
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
