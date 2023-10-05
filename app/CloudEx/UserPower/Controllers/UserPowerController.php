@@ -60,10 +60,10 @@ class UserPowerController extends Controller
         $wallet = Wallet::find($id);
         $user = UserPower::find($wallet->user_id);
         if ($wallet) {
-                $wallet->invested_power -= 1;
-                $user->unused_power += 1;
-                $user->save();
-                $wallet->save();
+            $wallet->invested_power -= 1;
+            $user->unused_power += 1;
+            $user->save();
+            $wallet->save();
             return response()->json(['invested_power' => $wallet->invested_power]);
         }
 
@@ -93,8 +93,16 @@ class UserPowerController extends Controller
     public function updateAmount(Request $request)
     {
         $id = auth()->id();
-        $wallet = Wallet::find(['user_id' => $id]);
-        $wallet->update($request->all());
+        $wallet = Wallet::where(['user_id' => $id, 'id' => $request->id])->first();
+        try {
+            $wallet->update([
+                'currency' => $request->currency,
+                'amount' => $request->amount
+            ]);
+            return response()->json(['message' => 'Amount updated successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
 }

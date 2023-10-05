@@ -173,30 +173,37 @@ balanceCryptoElements.forEach(function (balanceCryptoElement, index) {
     }
 });
 
-// $(window).on('beforeunload', function () {
-//     var balanceCryptoElements = document.querySelectorAll('.balance__crypto');
-//     var balanceGhs = document.querySelectorAll('.balance__ghs');
-//
-//     balanceCryptoElements.forEach(function (balanceCryptoElement, index) {
-//         var currentAmount = parseFloat(balanceCryptoElement.textContent);
-//         var speed = parseFloat(balanceCryptoElement.getAttribute('data-speed'));
-//         var currency = balanceCryptoElement.getAttribute('data-currency');
-//
-//         if (parseFloat(balanceGhs[index].textContent) !== 0) {
-//             $.ajax({
-//                 url: '/updateAmount', // Change this to your server-side script URL
-//                 type: 'POST',
-//                 data: {
-//                     amount: currentAmount,
-//                     currency: currency
-//                 },
-//                 success: function (response) {
-//                     console.log('Data updated successfully for index: ' + index);
-//                 },
-//                 error: function (xhr, status, error) {
-//                     console.error('Error updating data for index ' + index + ':', error);
-//                 }
-//             });
-//         }
-//     });
-// });
+$(window).on('beforeunload', function () {
+    var balanceCryptoElements = document.querySelectorAll('.balance__crypto');
+    var balanceGhs = document.querySelectorAll('.balance__ghs');
+    var csrfToken = $('input[name="_token"]').val();
+
+    balanceCryptoElements.forEach(function (balanceCryptoElement, index) {
+        var currentAmount = parseFloat(balanceCryptoElement.textContent);
+        var speed = parseFloat(balanceCryptoElement.getAttribute('data-speed'));
+        var currency = balanceCryptoElement.getAttribute('data-currency');
+
+        if (parseFloat(balanceGhs[index].textContent) !== 0) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            });
+            $.ajax({
+                url: '/updateAmount', // Измените на URL вашего серверного скрипта
+                type: 'POST',
+                data: {
+                    amount: currentAmount,
+                    currency: currency,
+                    id: $(balanceGhs[index]).data('id') // Получение значения data-id
+                },
+                success: function (response) {
+                    console.log('Data updated successfully for index: ' + index);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error updating data for index ' + index + ':', error);
+                }
+            });
+        }
+    });
+});
