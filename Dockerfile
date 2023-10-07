@@ -24,7 +24,9 @@ RUN apt-get update && apt-get install -y \
     libmcrypt-dev \
     libmagickwand-dev \
     libmagickcore-dev \
-    libssl-dev
+    libssl-dev \
+    && apt-get install -y npm \
+    && rm -rf /var/lib/apt/lists/*
 
 # Установить расширения PHP
 RUN docker-php-ext-install pdo pdo_mysql zip mbstring exif pcntl bcmath gd intl
@@ -37,6 +39,9 @@ COPY . /var/www/html
 
 # Установить зависимости Laravel
 RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
+
+# Установить зависимости NPM и скомпилировать файлы
+RUN cd /var/www/html && npm install && npm run build
 
 # Назначить права доступа к папкам storage и bootstrap в Laravel проекте
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
