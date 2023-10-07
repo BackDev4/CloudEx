@@ -19,7 +19,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: cloudex
     volumes:
-      - var/lib/postgresql/data
+      - .:var/lib/postgresql/data
 
   nginx:
     image: nginx:latest
