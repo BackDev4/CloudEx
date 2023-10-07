@@ -8,16 +8,3 @@ services:
       - 8000:80
     volumes:
       - .:/var/www/html
-    depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: cloudEx
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - dbdata:/var/lib/mysql
-
-volumes:
-  dbdata:
