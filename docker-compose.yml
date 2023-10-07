@@ -15,9 +15,9 @@ services:
   db:
     image: postgres:latest
     environment:
-      POSTGRES_USER: laravel
-      POSTGRES_PASSWORD: laravel
-      POSTGRES_DB: laravel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cloudex
     volumes:
       - db_data:/var/lib/postgresql/data
 
