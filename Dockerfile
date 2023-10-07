@@ -1,6 +1,5 @@
-FROM php:8.1-fpm
+FROM php:8.1-apache
 
-# Обновить список пакетов и установить нужные зависимости
 RUN apt-get update && apt-get install -y \
     git \
     libzip-dev \
@@ -46,14 +45,8 @@ RUN cd /var/www/html && npm install && npm run build
 # Назначить права доступа к папкам storage и bootstrap в Laravel проекте
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Предоставить конфигурацию Nginx
-COPY docker/nginx/default.conf /etc/nginx/sites-available/default
+# Предоставить конфигурацию Apache
+COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Предоставить конфигурацию PHP-FPM
-COPY docker/php-fpm/php.ini /usr/local/etc/php/php.ini
-
-# Открыть порт 80
-EXPOSE 80
-
-# Команда для запуска сервера Nginx и PHP-FPM
-CMD service nginx start && php-fpm
+# Предоставить конфигурацию PHP
+COPY docker/php/php.ini /usr/local/etc/php/php.ini
