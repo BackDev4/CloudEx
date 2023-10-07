@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:8.1-fpm
 
 # Обновить список пакетов и установить нужные зависимости
 RUN apt-get update && apt-get install -y \
