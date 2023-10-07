@@ -50,3 +50,5 @@ COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Предоставить конфигурацию PHP
 COPY docker/php/php.ini /usr/local/etc/php/php.ini
+
+RUN sudo a2enmod rewrite
