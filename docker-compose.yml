@@ -10,7 +10,7 @@ services:
       - .:/var/www/html
     depends_on:
       - db
-      - nginx
+      - apache
 
   db:
     image: postgres:latest
@@ -21,9 +21,13 @@ services:
     volumes:
         - ./data:/var/lib/postgresql/data
         
-  nginx:
-    image: nginx:latest
+  apache:
+    image: php:8.1-apache
     ports:
       - "8050:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - .:/var/www/html
+    depends_on:
+      - db
+    working_dir: /var/www/html
+    command: ['apache2-foreground']
