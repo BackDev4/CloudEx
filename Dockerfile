@@ -39,8 +39,6 @@ COPY . /var/www/html
 # Установить зависимости Laravel
 RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
 
-RUN chmod +x /usr/local/bin/vite
-
 # Установить зависимости NPM и скомпилировать файлы
 RUN cd /var/www/html && npm install && npm install -g vite && vite build
 
