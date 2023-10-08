@@ -7,7 +7,12 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/views/front/css/bootstrap.min.css'
+                'resources/views/front/css/bootstrap.min.css',
+                'resources/views/front/css/normalize.css',
+                'resources/views/front/css/style.css',
+                'resources/views/front/js/calculator.js',
+                'resources/views/front/js/dashboard.js',
+                'resources/views/front/js/hideinput.js',
             ],
             refresh: true,
         }),
