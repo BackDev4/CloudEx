@@ -40,7 +40,10 @@ COPY . /var/www/html
 RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Установить зависимости NPM и скомпилировать файлы
-RUN cd /var/www/html && npm install && npm install -g vite && vite build
+RUN cd /var/www/html && npm install && npm run build
 
 # Назначить права доступа к папкам storage и bootstrap в Laravel проекте
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Предоставить конфигурацию Apache
+COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
