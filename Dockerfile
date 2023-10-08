@@ -42,7 +42,7 @@ RUN cd /var/www/html && composer install --no-dev --no-interaction --optimize-au
 RUN chmod +x /usr/local/bin/vite
 
 # Установить зависимости NPM и скомпилировать файлы
-RUN cd /var/www/html && npm install && npm run build
+RUN cd /var/www/html && npm install && npm install -g vite && vite build
 
 # Назначить права доступа к папкам storage и bootstrap в Laravel проекте
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
