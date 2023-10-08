@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/views/front/js/calculator.js',
                 'resources/views/front/js/dashboard.js',
                 'resources/views/front/js/hideinput.js',
+                'resources/views/front/js/bootstrap.bundle.js'
             ],
             refresh: true,
         }),
