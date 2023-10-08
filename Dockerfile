@@ -47,3 +47,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 # Предоставить конфигурацию Apache
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
+
+RUN a2enmod rewrite
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
