@@ -22,9 +22,9 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create($referral_link = null): View
     {
-        return view('auth.register');
+        return view('front.home', compact('referral_link'));
     }
 
     /**
@@ -37,8 +37,8 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'referral_link' => public_path('/ref/' . Str::random(10)),
-            'referral_user' => $request->referral_user,
+            'referral_link' => 'ref/' . Str::random(10),
+            'referral_user' => 'ref/' . $request->referral_user,
         ]);
 
         function getReferralLevel($referralId, $level = 0)
@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
         }
 
         if ($request->referral_user != null) {
-            $referrer = User::where(['referral_link' => public_path($request->referral_user)])->first();
+            $referrer = User::where(['referral_link' => 'ref/' . $request->referral_user])->first();
             $referral = Referrals::create([
                 'referral_id' => $referrer->id,
                 'user_id' => $user->id,

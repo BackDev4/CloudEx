@@ -68,7 +68,7 @@
                             <div class="input-group" id="show_hide_password">
                                 <input type="password" class="form-hide-icon border-end-0 password modal-input"
                                        id="sign_in_password" name="password"><a href="javascript:;"
-                                                                class="input-group-text bg-transparent"><i
+                                                                                class="input-group-text bg-transparent"><i
                                         class="bx bx-show eye-icon"></i></a>
                             </div>
                         </div>
@@ -96,14 +96,13 @@
                     </div>
                     <form action="{{route('register')}}" method="post">
                         @csrf
+                        @if(isset($referral_link))
+                            <input type="hidden" name="referral_user" value="{{ $referral_link }}">
+                        @endif
                         <div class="modal-block-one">
                             <label for="exampleInputEmail1" class="modal-label">Email Address</label>
                             <input type="email" class="form-input modal-input" placeholder="" id="exampleInputEmail1"
                                    aria-describedby="emailHelp" name="email">
-                        </div>
-                        <div class="modal-block-one">
-                            <label class="modal-label">Referal Link (If have)</label>
-                            <input type="text" class="form-input modal-input" name="referral_user">
                         </div>
                         <div class="modal-block-three">
                             <label for="exampleInputPassword1" class="modal-label">Enter Password</label>
@@ -130,6 +129,19 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var referralLink = urlParams.get('ref');
+
+        if (referralLink) {
+            $('#ModalRegister').modal('show');
+        }
+    });
+</script>
+
 @vite([
     "resources/views/front/js/calculator.js",
     "resources/views/front/js/hideinput.js",
