@@ -16,7 +16,7 @@ function bnbPeriod(e) {
 
 bnbInput.addEventListener("input", (() => {
     var e = bnbInput.value * Number(document.getElementById("bnbRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * bnbDays, n = 40 * e;
     document.getElementById("bnbGHs").value = numberFormat(n, 0) + " GH/s",
         document.getElementById("bnbProfit").value = numberFormat(t, 2) + "$",
@@ -38,7 +38,7 @@ function trxPeriod(e) {
 
 trxInput.addEventListener("input", (() => {
     var e = trxInput.value * Number(document.getElementById("trxRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * trxDays, n = 40 * e;
     document.getElementById("trxGHs").value = numberFormat(n, 0),
         document.getElementById("trxProfit").value = numberFormat(t, 2),
@@ -60,7 +60,7 @@ function ltcPeriod(e) {
 
 ltcInput.addEventListener("input", (() => {
     var e = ltcInput.value * Number(document.getElementById("ltcRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * ltcDays, n = 40 * e;
     document.getElementById("ltcGHs").value = numberFormat(n, 0),
         document.getElementById("ltcProfit").value = numberFormat(t, 2),
@@ -82,7 +82,7 @@ function dogePeriod(e) {
 
 dogeInput.addEventListener("input", (() => {
     var e = dogeInput.value * Number(document.getElementById("dogeRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * dogeDays, n = 40 * e;
     document.getElementById("dogeGHs").value = numberFormat(n, 0),
         document.getElementById("dogeProfit").value = numberFormat(t, 2),
@@ -104,7 +104,7 @@ function ethPeriod(e) {
 
 ethInput.addEventListener("input", (() => {
     var e = ethInput.value * Number(document.getElementById("ethRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * ethDays, n = 40 * e;
     document.getElementById("ethGHs").value = numberFormat(n, 0),
         document.getElementById("ethProfit").value = numberFormat(t, 2),
@@ -128,7 +128,7 @@ function btcPeriod(e) {
 
 btcInput.addEventListener("input", (() => {
     var e = btcInput.value * Number(document.getElementById("btcRate").value);
-    percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
+    var percent = e >= 1500 ? .05 : e >= 750 ? .045 : e >= 250 ? .04 : e >= 25 ? .035 : e >= 1 ? .03 : .02;
     var t = e * percent * btcDays, n = 40 * e;
     document.getElementById("btcGHs").value = numberFormat(n, 0),
         document.getElementById("btcProfit").value = numberFormat(t, 2),
